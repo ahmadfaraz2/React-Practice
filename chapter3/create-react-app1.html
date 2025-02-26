@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- React and Babel CDN Links -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <title>Create React App Intro</title>
+</head>
+
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+
+        function Header() {
+            return (
+                <header>
+                    <h1>Create React App Intro</h1>
+                </header>
+            )
+        }
+
+        const steps = [
+            "Install NodeJs",
+            "npm install -g create-react-app",
+            "npx create-react-app <app_name>"
+        ]
+
+        function Steps(props) {
+            return (
+                <section>
+                    <ul>
+                        {props.steps.map((step, i) => (<li key={i}>{step}</li>) )}
+                    </ul>    
+                </section>
+            )
+        }
+
+        function Footer(props) {
+            return (
+                <footer>
+                    <p>Copyright @ {props.year}</p>
+                    </footer>
+            )
+        }
+
+        function App() {
+            return (
+                <React.Fragment>
+                    <Header />
+                    <Steps steps={steps} />
+                    <Footer year={new Date().getFullYear()} />
+                </React.Fragment>
+            )
+        }
+
+        ReactDOM.render(<App />, document.getElementById("root"));
+
+    </script>
+</body>
+
+</html>

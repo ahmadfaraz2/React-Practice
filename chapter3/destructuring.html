@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- ReactJS and Babel CDN Links -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script crossorigin src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <title>Destructuring Arrays and Objects</title>
+</head>
+
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+
+        function Header({ topic }) {
+            return (
+                <header>
+                    <h1 style={{ textAlign: "center" }} >Topic: {topic}</h1>
+                </header>
+            )
+        }
+
+        function Main() {
+            return (
+                <section style={{ textAlign: "center" }}>
+                    <p>We use <strong>Destructuring</strong> to extract multiple values from an object or array and assign them to variables.</p>
+                    <hr />
+                    <h2>Arrays Example:</h2>
+                    <p><code>const cities = ["Tokyo", "New York", "Islamabad"]</code></p>
+                    <p>Instead of using index we can give each city a variable(name)</p>
+                    <p><code>const [firstCity, secondCity, thirdCity] = ["Tokyo", "New York", "Islamabad"]</code></p>
+                    <hr />
+                    <h5>We can use destructuring also for Objects and it is widely used in React props.</h5>
+                    <h3>See code</h3>
+                    <hr />
+                </section>
+            )
+        }
+
+        function Footer({ year }) {
+            return (
+                <footer style={{ textAlign: "center" }}>
+                    <p>Copyright @{year}</p>
+                </footer>
+            )
+        }
+
+        function App() {
+            return (
+                <React.Fragment>
+                    <Header topic="Destructuring Arrays and Objects" />
+                    <Main />
+                    <Footer year={new Date().getFullYear()} />
+                </React.Fragment>
+            )
+        }
+
+        ReactDOM.render(<App />, document.getElementById('root'))
+    </script>
+</body>
+
+</html>

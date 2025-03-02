@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- React and Babel CDN Links -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script crossorigin src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <title>Learning useState Hook</title>
+
+    <style>
+        .text-center {
+            text-align: center;
+        }
+        .btn {
+            background-color: bisque;
+            margin: 3px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="root"></div>
+
+    <script type="text/babel">
+
+        const {useState} = React;
+
+        
+        function Header() {
+            const what = useState();
+            console.log(what)
+
+            return (
+                <header className="text-center">
+                    <h1>Learning React useState Hook</h1>
+                </header>
+            )
+        }
+
+        function Main() {
+
+            const [emotion, setEmotion] = useState("Happy");
+
+            return (
+                <section className="text-center">
+                    <hr />
+                    <h2>Current emotion is {emotion}</h2>
+                    <button className="btn" onClick={() => setEmotion("Sad")}>Sad</button>
+                    <button className="btn" onClick={() => setEmotion("Excited")}>Excited</button>
+                </section>
+            )
+        }
+
+        function Footer(props) {
+            return (
+                <footer className="text-center">
+                    <h3>Copyright @ {props.year}</h3>
+                </footer>
+            )
+        }
+
+        function App() {
+            return (
+                <React.Fragment>
+                    <Header />
+                    <Main />
+                    <Footer year={new Date().getFullYear()}/>
+                </React.Fragment>
+            )
+        }
+
+        ReactDOM.render(<App />, document.getElementById('root'))
+
+    </script>
+
+</body>
+
+</html>

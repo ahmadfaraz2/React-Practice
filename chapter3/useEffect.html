@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- React and Babel CDN Links -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <title>Learning useEffect Hook</title>
+
+    <style>
+        .text-center {
+            text-align: center;
+        }
+
+        .list-center {
+            display: inline-block;
+            text-align: left;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+
+        const { useEffect, useState } = React;
+
+        function Header() {
+            return (
+                <header className="text-center">
+                    <h1>Learning useEffect Hook</h1>
+                </header>
+            )
+        }
+
+        function Main() {
+
+            const [emotion, setEmotion] = useState("happy");
+
+            useEffect(() => {
+                console.log(`It's ${emotion} right now`)
+            }, [emotion])
+
+            return (
+                <section className="text-center">
+                    <hr />
+                    <h2>Current emotion is {emotion}</h2>
+
+                    <button onClick={() => { setEmotion("Sad") }}>Sad</button>
+                    <button onClick={() => { setEmotion("Excited") }}>Excited</button>
+                    <p>Open developer tools <i>console (Ctrl + Shift + J)</i> to check changes for <strong>useEffect</strong>. </p>
+                    <hr />
+                    <p>useEffect is a React Hook that allow you to urn side effects in a functional component</p>
+                    <h4>Side Effects Include:</h4>
+                    <ul className="list-center">
+                        <li>Fetching Data from an API</li>
+                        <li>Subscribing to events</li>
+                        <li>Updating the DOM</li>
+                        <li>Setting up timers</li>
+                    </ul>
+                    <hr />
+                </section>
+            )
+        }
+
+        function Usage() {
+            return (
+                <section className="text-center">
+                    <h3>Setps to use <strong>useEffect</strong> Properly</h3>
+                    <ol className="list-center">
+                        <li>Import <strong>useEffect</strong> from React</li>
+                        <li>Write a function inside <strong>useEffect</strong></li>
+                        <li>Decide when it should run</li>
+                            <ul>
+                                <li>No dependancy array -> Runs on every render</li>
+                                <li>Empty Array [] -> Runs only on mount</li>
+                                <li>[state] -> Runs when <i>state</i> changes</li>
+                            </ul>
+                    </ol>
+                    <hr />
+                </section>
+            )
+        }
+
+        function Footer(props) {
+            return (
+                <footer className="text-center">
+                    <h4>Copyright @ {props.year}</h4>
+                </footer>
+            )
+        }
+
+        function App() {
+            return (
+                <React.Fragment>
+                    <Header />
+                    <Main />
+                    <Usage />
+                    <Footer year={new Date().getFullYear()} />
+                </React.Fragment>
+            )
+        }
+
+        ReactDOM.render(<App />, document.getElementById("root"))
+
+    </script>
+</body>
+
+</html>

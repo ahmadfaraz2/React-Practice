@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- React and Babel CDN Links -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script crossorigin src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <title>Learing useRedure Hook</title>
+
+    <style>
+        .text-center {
+            text-align: center;
+        }
+        .list-align {
+            display: inline-block;
+            text-align: left;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="root"></div>
+
+    <script type="text/babel">
+
+        const {useState, useReducer} = React;
+
+        function Header() {
+            return (
+                <header className="text-center">
+                    <h1>Understanding useReducer Hook</h1>
+                </header>
+            )
+        }
+
+        function Main() {
+            return (
+                <section className="text-center">
+                    <hr />
+                    <h3>What we are going to do?</h3>
+                    <p>Basically we are going to make a <strong>input field (checkbox)</strong> and we want if we checked the box <strong>label</strong>  should be changed to <strong>checked</strong> otherwise label will be <strong>not checked</strong>.</p>
+                    <hr />
+                    <h3>How useReducer work?</h3>
+                    <p>useReducer is going to take in <strong>two different arguments</strong>.</p>
+                    <ol className="list-align">
+                        <li>Function that we are going to use to update our state.</li>
+                        <li>Our initial state.</li>
+                    </ol>
+                    <h4>Syntax</h4>
+                    <code>
+                        useReducer(checked => !checked, false)    
+                    </code>
+                    <hr />
+                </section>
+            )
+        }
+
+        function UseStateImplement() {
+
+            const [checked, setChecked] = useState(false);
+
+            return (
+                <section className="text-center">
+                    <h2>Reducer Hook Impelmentation</h2>  
+                    <h5>Method 1 using useState Hook</h5>
+                    <input type="checkbox" value={checked} onChange={() => setChecked(checked => !checked)}/>
+                    <label>{ checked ? "Checked" : "Not Checked" }</label>
+                </section>
+            )
+        }
+
+        function ReducerImplement() {
+
+            const [checked, setChecked] = useReducer((checked) => !checked, false)
+
+            return (
+                <section className="text-center">
+                    <h5>Method 2 using useReducer Hook</h5>    
+                    <input type="checkbox" value={checked} onChange={setChecked}/>
+
+                    <label>{checked ? "Checked": "Not Checked"}</label>
+                    <hr />
+                </section>
+            )
+        }
+
+        function Footer(props) {
+            return (
+                <footer className="text-center">
+                    <h4>Copyright @ {props.year}</h4>
+                </footer>
+            )
+        }
+
+        function App() {
+            return (
+                <React.Fragment>
+                    <Header />
+                    <Main />
+                    <UseStateImplement />
+                    <ReducerImplement />
+                    <Footer year={new Date().getFullYear()}/>    
+                </React.Fragment>
+            )
+        }
+
+
+        ReactDOM.render(<App />, document.getElementById("root"))
+
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- React and Babel CDN Links -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <title>Learing useRef Hook</title>
+</head>
+
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+
+        const { useRef } = React;
+
+        function App() {
+
+            const txtTitle = useRef();
+            const hexColor = useRef();
+
+            console.log(txtTitle);
+
+            const submit = (e) => {
+                e.preventDefault();
+                const title = txtTitle.current.value;
+                const color = hexColor.current.value;
+                alert(`${title}, ${color}`);
+                txtTitle.current.value = "";
+                hexColor.current.value = "";
+            }
+
+            return (
+                <form onSubmit={submit}>
+                    <input
+                        ref={txtTitle}
+                        type="text"
+                        placeholder="color title..."
+                    />
+                    <input
+                        ref={hexColor}
+                        type="color" 
+                    />
+                    <button>Add</button>
+                </form>
+            )
+        }
+
+        ReactDOM.render(<App />, document.getElementById("root"));
+
+    </script>
+</body>
+
+</html>

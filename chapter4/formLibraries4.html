@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- React and Babel CDN Links -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <title>React Form Libraries</title>
+</head>
+
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+
+        function Header() {
+            return (
+                <header>
+                    <h1>React Form Libraries (Linkedin Learing)</h1>
+                </header>
+            )
+        }
+
+        function Libraries(props) {
+            return (
+                <main>
+                    <ul>
+                        {props.libraries.map((library, index) => {
+                            const title = Object.keys(library)[0];
+                            const link = library[title];
+                            return (
+                                <li key={index}><a href={link} target="_blank">{title}</a></li>
+                            )
+                        })}
+                    </ul>
+                </main>
+            )
+        }
+
+    const libraries = [
+        {"Formik": "https://formik.org/"},
+        {"react-hook-form": "https://www.react-hook-form.com/"},
+        {"usehooks": "https://usehooks.com/"}
+    ]
+
+        function App() {
+            return (
+                <React.Fragment>
+                    <Header />
+                    <Libraries libraries={libraries} />    
+                </React.Fragment>
+            )
+        }
+
+        ReactDOM.render(<App />, document.getElementById("root"));
+
+    </script>
+</body>
+
+</html>

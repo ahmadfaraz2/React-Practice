@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- React and Babel CDN Links -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+
+        const { useState } = React;
+
+        // Our Custom Hook
+        function useInput(initialValue) {
+            const [value, setValue] = useState(initialValue);
+
+            return [
+                {
+                    value,
+                    onChange: (e) => setValue(e.target.value)
+                },
+                () => setValue(initialValue)
+            ]
+        }
+
+        function App() {
+
+            const [titleProps, resetTitle] = useInput("");
+            const [colorProps, resetColor] = useInput("#000000");
+
+            const submit = (e) => {
+                e.preventDefault();
+                alert(`${titleProps.value}, ${colorProps.value}`);
+                resetTitle();
+                resetColor();
+            }
+
+            return (
+                <form onSubmit={submit}>
+                    <input
+                        {...titleProps}
+                        type="text"
+                        placeholder="color title..." />
+                    <input
+                        {...colorProps}
+                        type="color" />
+                    <button>Add</button>
+                </form>
+            )
+        }
+
+        ReactDOM.render(<App />, document.getElementById("root"));
+
+    </script>
+</body>
+
+</html>

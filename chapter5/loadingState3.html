@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- React and Babel CDN Links -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <title>Loading State</title>
+</head>
+
+<body>
+
+    <div id="root"></div>
+
+    <script type="text/babel">
+
+        const { useState, useEffect } = React;
+
+        function GithubUser({ name, bio, avatar }) {
+            return (
+                <div>
+                    <h1>{name}</h1>
+                    <p>{bio}</p>
+                    <img src={avatar} alt={name} height={200} />
+                </div>
+            )
+        }
+
+
+        function App() {
+
+            const [data, setData] = useState(null);
+            const [error, setError] = useState(null);
+            const [loading, setLoading] = useState(false);
+
+            useEffect(() => {
+                setLoading(true);
+                fetch(`https://api.github.com/users/ahmadfaraz2`)
+                    .then((response) => response.json())
+                    .then((data) => setData(data))
+                    .then(() => setLoading(false));
+                
+            }, []);
+
+            if (loading) return <h1>Loading...</h1>
+            if (error) return <pre>{JSON.stringify(error)}</pre>
+            if (!data) return null
+
+            if (data) {
+                return (
+                    <GithubUser
+                        name={data.name}
+                        bio={data.bio}
+                        avatar={data.avatar_url}
+                    />
+                )
+            }
+
+            return (
+                <h1>it is working....</h1>
+            )
+        }
+
+        ReactDOM.render(<App />, document.getElementById("root"))
+
+    </script>
+
+</body>
+
+</html>

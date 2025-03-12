@@ -51,19 +51,15 @@
             if (error) return <pre>{JSON.stringify(error)}</pre>
             if (!data) return null
 
-            if (data) {
-                return (
-                    <GithubUser
-                        name={data.name}
-                        bio={data.bio}
-                        avatar={data.avatar_url}
-                    />
-                )
-            }
-
+            
             return (
-                <h1>it is working....</h1>
+                <GithubUser
+                    name={data.name}
+                    bio={data.bio}
+                    avatar={data.avatar_url}
+                />
             )
+
         }
 
         ReactDOM.render(<App />, document.getElementById("root"))

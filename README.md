@@ -1,8 +1,8 @@
 # React JS Essential Training
 
-**Course Description: React Essential Training (LinkedIn Learning)**  
+**Course Description: React Essential Training**  
 
-I have completed the **React Essential Training** course on **LinkedIn Learning**, where I gained hands-on experience in building dynamic and interactive web applications using **React.js**. This course provided a comprehensive foundation, covering key React concepts and best practices.  
+I have completed the **React Essential Training** course, where I gained hands-on experience in building dynamic and interactive web applications using **React.js**. This course provided a comprehensive foundation, covering key React concepts and best practices.  
 
 ### **Key Learnings & Implementations:**  
 ✅ **React & React Elements** – Understanding the core of React and how elements are created and rendered.  
